@@ -1,0 +1,31 @@
+.appControlsContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1700px;
+    padding: 35px;
+    margin: 0 auto;
+}
+
+.authorizationMsg {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 35px; 
+}
+
+.btn {
+    align-self: center;
+    margin: 0 auto;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--white-color);
+    font-family: 'Caveat', cursive;
+    font-size: 25px;
+    background-color: var(--button-color);
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}

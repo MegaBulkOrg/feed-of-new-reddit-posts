@@ -1,0 +1,35 @@
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.cardImgContainer {
+    height: 150px;
+    overflow: hidden;
+}
+
+.cardContentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+    padding: 25px;
+}
+
+.cardTitle {
+    font-family: 'Kenia', cursive;
+}
+
+.cardBtns {
+    display: flex;
+    justify-content: end
+}
+
+.cardBtns button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cardBtns button:nth-child(1) {
+    margin-right: 15px;
+}
