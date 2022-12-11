@@ -1,4 +1,6 @@
 .card {
+    display: flex;
+    flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -10,6 +12,7 @@
 .cardContentContainer {
     display: flex;
     flex-direction: column;
+    flex: 1;
     justify-content: space-between;
     min-height: 150px;
     padding: 25px;

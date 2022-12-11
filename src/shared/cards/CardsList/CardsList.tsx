@@ -44,7 +44,7 @@ export function CardsList() {
           {token && !loading && error === '' && postsList.length === 0 && 
             <p className={styles.msg}>Карточек нет. Перезагрузите приложение и снова авторизуйтесь.</p>
           }
-          {mode === 'favorites' && likedListToShow.length === 0 &&
+          {mode === 'favorites' && likedListToShow.length === 0 && postsList.length !== 0 &&
             <p className={styles.msg}>Раздел "Избранное" пуст.</p>
           }
           {!loading && postsList.length !== 0 && 

@@ -32,6 +32,7 @@ export function Card({title, url, id, remove, addToFavorites}: ICardProps) {
         </div>
         <div className={styles.cardContentContainer}>
           <h1 className={styles.cardTitle}>
+            {title.length === 0 && 'Пост без названия'}
             {title.length <= 40 ? title : title.substring(0, 40)+' ...'}
           </h1>
           <div className={styles.cardBtns}>

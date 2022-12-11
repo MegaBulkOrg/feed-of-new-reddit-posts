@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { modeSwitch } from '../../store/mode';
 import { RootState } from '../../store/store';
+import { ICardProps } from '../cards/Card';
 import styles from './appcontrols.css';
 
 export function AppControls() {
     const token = useSelector<RootState, string>((state) => state.token)
     const loading = useSelector<RootState, boolean>((state) => state.items.loading)
+    const error = useSelector<RootState, string>((state) => state.items.error)
+    const postsList = useSelector<RootState, ICardProps[]>((state) => state.items.data)
     const [mode, setMode] = useState('Показать Избранное')
     const dispatch = useDispatch<any>()
     
@@ -32,7 +35,13 @@ export function AppControls() {
                         </a> 
                     </>
                 }
-                {token && !loading && <button className={styles.btn} onClick={changeMode}>{mode}</button>}
+                {/* 
+                    в принципе, проверка на наличие ошибки тут не нужна, поскольку есть проверка на пустой список,
+                    а при ошибке список будет пустой, но для того, чтобы все было правильно, проверка на наличие ошибок добавлена
+                */}
+                {token && !loading && error === '' && postsList.length !== 0 && 
+                    <button className={styles.btn} onClick={changeMode}>{mode}</button>
+                }
             </div>
         </section>
   );

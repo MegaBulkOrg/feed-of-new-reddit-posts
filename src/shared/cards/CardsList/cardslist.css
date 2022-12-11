@@ -13,7 +13,7 @@
 .items {
     display: grid;
     grid-template-columns:repeat(5, 1fr);
-    grid-template-rows: repeat(5, 300px);
+    grid-template-rows: repeat(5, auto);
     gap: 25px;
 }
 
@@ -29,7 +29,14 @@
     }
 }
 
-@media (max-width:900px)
+@media (max-width:1000px)
+{    
+    .items {
+        grid-template-columns:repeat(3, 1fr);
+    }
+}
+
+@media (max-width:730px)
 {    
     .items {
         grid-template-columns:repeat(2, 1fr);
