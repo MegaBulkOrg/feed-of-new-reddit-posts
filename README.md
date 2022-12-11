@@ -21,3 +21,4 @@
 - React
 - Redux
 - TypeScript
+- SSR
