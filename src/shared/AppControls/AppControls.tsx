@@ -26,7 +26,8 @@ export function AppControls() {
         <section className='app-controls'>
             <div className='app-controls-container row p-5 text-center'>                   
                 <div className='col'>   
-                    {!token || token === 'undefined' &&
+                    {/* тут круглые скобки у или-условия нужны: без них не отобразится надпись и кнопка */}
+                    {(!token || token === 'undefined') &&
                         <>
                             <p>Чтобы увидеть карточки, авторизуйтесь</p> 
                             <a className='btn btn-lg btn-outline-info'
