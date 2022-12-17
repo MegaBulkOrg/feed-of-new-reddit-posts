@@ -22,7 +22,7 @@ app.get('/auth', (req, res) => {
     .then(({data}) => {
         res.send(mainTemplate(ReactDOM.renderToString(App()), data['access_token']))
     })
-    .catch((msg) => console.log('что-то пошло не так в файле server.js'))
+    .catch((msg) => console.log('Что-то пошло не так при получении токена (файл server.js)'))
 })
 
 app.use('/static', express.static('./app/client'))

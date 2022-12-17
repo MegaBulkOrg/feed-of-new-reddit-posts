@@ -61,25 +61,24 @@ interface IPostData {
 
 export const dataRequestAsync = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
     dispatch(dataRequest())
-    axios.get(`https://oauth.reddit.com/new/`, {
-      headers: { Authorization: `bearer ${getState().token}` },
-    })    
-    .then(({ data }) => {
-        const postsList = data?.data?.children
-        const itemsToRedux = postsList.map(({ data }: { [x: string]: any }): IPostData | null => {
-            if (data['is_video']) return null
-            return {
-              id: data['id'],
-              title: data['title'],
-              url: data['url'],
-              liked: false
-            }
-          })
-          .filter((post: IPostData | null) => post !== null)
-          dispatch(dataRequestSuccess(itemsToRedux))
-    })
-    .catch((error) => {
-        console.log(error)
-        dispatch(dataRequestError(String(error)))
-    })
+    axios
+        .get(`https://oauth.reddit.com/new/`, {headers: {Authorization: `bearer ${getState().token}`}})
+        .then(({ data }) => {
+            const postsList = data?.data?.children
+            const itemsToRedux = postsList.map(({ data }: { [x: string]: any }): IPostData | null => {
+                if (data['is_video']) return null
+                return {
+                    id: data['id'],
+                    title: data['title'],
+                    url: data['url'],
+                    liked: false
+                }
+            })
+            .filter((post: IPostData | null) => post !== null)
+            dispatch(dataRequestSuccess(itemsToRedux))
+        })
+        .catch((error) => {
+            dispatch(dataRequestError(String(error)))
+            localStorage.setItem('token', 'undefined')
+        })
 }
