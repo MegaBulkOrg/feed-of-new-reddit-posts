@@ -9,9 +9,9 @@ export const mainTemplate = (content, token) => `
             <script src="/static/client.js" type="application/javascript"></script>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Kenia&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
             <script>
-                window.__token__ = "${token}"
+                if ("${token}" && "${token}" != 'undefined') localStorage.setItem('token', "${token}")
             </script>
         </head>
         <body>

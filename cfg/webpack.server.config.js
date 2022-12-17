@@ -35,6 +35,10 @@ module.exports = {
 			{
 				test: GLOBAL_CSS_REGEXP,
 				use: ['css-loader']
+			},
+			{
+				test: /\.(png|jpg|jpeg|svg|gif)/,
+				use: ['file-loader']
 			}
 		]
 	},

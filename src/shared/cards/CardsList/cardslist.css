@@ -1,15 +1,3 @@
-.cardsListContainer {
-    max-width: 1700px;
-    padding: 0 80px 80px 80px;
-    margin: 0 auto;
-}
-
-.msg {
-    text-align: center;
-    font-family: 'Caveat', cursive;
-    font-size: 35px;
-}
-
 .items {
     display: grid;
     grid-template-columns:repeat(5, 1fr);
@@ -19,11 +7,6 @@
 
 @media (max-width:1220px)
 {
-    .cardsListContainer {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-
     .items {
         grid-template-columns:repeat(4, 1fr);
     }
@@ -45,13 +28,6 @@
 
 @media (max-width:550px)
 {
-    .msg {
-        font-size: 25px;
-    }
-    .cardsListContainer {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
     .items {
         grid-template-columns:repeat(1, 1fr);
     }

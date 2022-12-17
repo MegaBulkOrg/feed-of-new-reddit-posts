@@ -33,22 +33,23 @@ export function CardsList() {
   const likedListToShow = listToShow.filter((item) => item.liked === true)
 
   return (
-    <section className={styles.cardsList}>
-      <div className={styles.cardsListContainer}>   
+    <section className='cards-list'>
+      <div className='cards-list-container row pb-5 g-5'>   
           {token && loading && 
-            <p className={styles.msg}>Загрузка...</p>
+            <p className='text-center'>Загрузка...</p>
           }
           {error !== '' && 
-            <p className={styles.msg}>Произошла ошибка: {error}. Перезагрузите приложение и снова авторизуйтесь.</p>
+            <p className='text-center'>Произошла ошибка: {error}. Перезагрузите приложение и снова авторизуйтесь.</p>
           }
           {token && !loading && error === '' && postsList.length === 0 && 
-            <p className={styles.msg}>Карточек нет. Перезагрузите приложение и снова авторизуйтесь.</p>
+            <p className='text-center'>Карточек нет. Перезагрузите приложение и снова авторизуйтесь.</p>
           }
           {mode === 'favorites' && likedListToShow.length === 0 && postsList.length !== 0 &&
-            <p className={styles.msg}>Раздел "Избранное" пуст.</p>
+            <p className='text-center'>Раздел "Избранное" пуст.</p>
           }
           {!loading && postsList.length !== 0 && 
             <div className={styles.items}>
+                {/* несмотря на то, что тут нет прямого указания на то, чтобы делать повторный рендер списка при удалении карточки, все равно, как только изменится state у Redux, запустится повторный рендер списка */}
                 {
                   mode === 'favorites' 
                     ? <GenericElements<ICardProps> list={likedListToShow} Template={Card}/>

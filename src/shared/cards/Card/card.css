@@ -1,38 +1,15 @@
-.card {
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
 .cardImgContainer {
-    height: 150px;
-    overflow: hidden;
+    position: relative;
+    height: 200px;
 }
 
-.cardContentContainer {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: space-between;
+.cardImg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+.cardBody {
     min-height: 150px;
-    padding: 25px;
-}
-
-.cardTitle {
-    font-family: 'Kenia', cursive;
-}
-
-.cardBtns {
-    display: flex;
-    justify-content: end
-}
-
-.cardBtns button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.cardBtns button:nth-child(1) {
-    margin-right: 15px;
 }

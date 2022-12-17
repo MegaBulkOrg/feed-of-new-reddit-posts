@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modeSwitch } from '../../store/mode';
 import { RootState } from '../../store/store';
 import { ICardProps } from '../cards/Card';
-import styles from './appcontrols.css';
 
 export function AppControls() {
     const token = useSelector<RootState, string>((state) => state.token)
@@ -24,24 +23,26 @@ export function AppControls() {
     }, [mode])
     
     return (
-        <section className={styles.appControls}>
-            <div className={styles.appControlsContainer}>                   
-                {!token &&
-                    <>
-                        <p className={styles.authorizationMsg}>Чтобы увидеть карточки, авторизуйтесь</p> 
-                        <a className={styles.btn} 
-                            href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read identity submit`}>
-                            Авторизация
-                        </a> 
-                    </>
-                }
-                {/* 
-                    в принципе, проверка на наличие ошибки тут не нужна, поскольку есть проверка на пустой список,
-                    а при ошибке список будет пустой, но для того, чтобы все было правильно, проверка на наличие ошибок добавлена
-                */}
-                {token && !loading && error === '' && postsList.length !== 0 && 
-                    <button className={styles.btn} onClick={changeMode}>{mode}</button>
-                }
+        <section className='app-controls'>
+            <div className='app-controls-container row p-5 text-center'>                   
+                <div className='col'>   
+                    {!token &&
+                        <>
+                            <p>Чтобы увидеть карточки, авторизуйтесь</p> 
+                            <a className='btn btn-lg btn-outline-info'
+                                href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read identity submit`}>
+                                Авторизация
+                            </a>
+                        </>
+                    }
+                    {/* 
+                        в принципе, проверка на наличие ошибки тут не нужна, поскольку есть проверка на пустой список,
+                        а при ошибке список будет пустой, но для того, чтобы все было правильно, проверка на наличие ошибок добавлена
+                    */}
+                    {token && !loading && error === '' && postsList.length !== 0 && 
+                        <button className='btn btn-lg btn-outline-info' onClick={changeMode}>{mode}</button>
+                    }
+                </div>
             </div>
         </section>
   );

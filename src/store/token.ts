@@ -15,5 +15,6 @@ export const setToken: ActionCreator<SetTokenAction> = (token) => ({
 })
 
 export const saveToken = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
-    if (window.__token__ && window.__token__ != "undefined") dispatch(setToken(window.__token__))
+    const token = localStorage.getItem('token')
+    if (token && token != 'undefined') dispatch(setToken(token))
 } 
