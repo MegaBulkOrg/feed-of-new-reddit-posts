@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons/Icon';
 import styles from './card.css';
+import nophoto from './noPhoto.jpg';
 
 enum EIcon {
   likeFalse = 'likeFalse',
@@ -31,7 +32,7 @@ export function Card({title, url, id, remove, addToFavorites}: ICardProps) {
         */}
         {url.endsWith('.jpg') || url.endsWith('.png') || url.endsWith('.jpeg') || url.endsWith('.gif')
           ?  <img className={`${styles.cardImg} card-img-top`} src={url} alt={title} />
-          :  <img className={`${styles.cardImg} card-img-top`} src='https://images.squarespace-cdn.com/content/v1/58a1e3b91b10e3f74fb8f8b3/1531464370041-8KCQHOQ7NELBDNL9LP1C/DH+no+Photos+Logo+Red.png?format=2500w' alt={title} />
+          :  <img className={`${styles.cardImg} card-img-top`} src={nophoto} alt={title} />
         }
       </div>
       <div className={`${styles.cardBody} card-body d-flex flex-column justify-content-between`}>

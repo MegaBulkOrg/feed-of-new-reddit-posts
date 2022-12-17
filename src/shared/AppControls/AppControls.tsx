@@ -26,7 +26,7 @@ export function AppControls() {
         <section className='app-controls'>
             <div className='app-controls-container row p-5 text-center'>                   
                 <div className='col'>   
-                    {!token && token != 'undefined' &&
+                    {!token || token === 'undefined' &&
                         <>
                             <p>Чтобы увидеть карточки, авторизуйтесь</p> 
                             <a className='btn btn-lg btn-outline-info'
@@ -39,7 +39,7 @@ export function AppControls() {
                         в принципе, проверка на наличие ошибки тут не нужна, поскольку есть проверка на пустой список,
                         а при ошибке список будет пустой, но для того, чтобы все было правильно, проверка на наличие ошибок добавлена
                     */}
-                    {!token && token != 'undefined' && !loading && error === '' && postsList.length !== 0 && 
+                    {token && token !== 'undefined' && !loading && error === '' && postsList.length !== 0 && 
                         <button className='btn btn-lg btn-outline-info' onClick={changeMode}>{mode}</button>
                     }
                 </div>
