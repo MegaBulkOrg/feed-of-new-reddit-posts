@@ -11,7 +11,7 @@ export const mainTemplate = (content, token) => `
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
             <script>
-                if ("${token}" && "${token}" != 'undefined') localStorage.setItem('token', "${token}")
+                if ("${token}" && "${token}" !== 'undefined') localStorage.setItem('token', "${token}")
             </script>
         </head>
         <body>

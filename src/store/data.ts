@@ -59,10 +59,10 @@ interface IPostData {
     liked: boolean
 }
 
-export const dataRequestAsync = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
+export const dataRequestAsync = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
     dispatch(dataRequest())
     axios
-        .get(`https://oauth.reddit.com/new/`, {headers: {Authorization: `bearer ${getState().token}`}})
+        .get(`https://oauth.reddit.com/new/`, {headers: {Authorization: `bearer ${localStorage.getItem('token')}`}})
         .then(({ data }) => {
             const postsList = data?.data?.children
             const itemsToRedux = postsList.map(({ data }: { [x: string]: any }): IPostData | null => {

@@ -6,10 +6,6 @@ import { mainTemplate } from './mainTemplate'
 
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send(mainTemplate(ReactDOM.renderToString(App())))
-})
-
 app.get('/auth', (req, res) => {
     axios.post(
         'https://www.reddit.com/api/v1/access_token',
@@ -26,5 +22,7 @@ app.get('/auth', (req, res) => {
 })
 
 app.use('/static', express.static('./app/client'))
+
+app.get('*', (req, res) => {res.send(mainTemplate(ReactDOM.renderToString(App())))})
 
 app.listen(3000, () => console.log('Сервер запустился на http://localhost:3000'))
