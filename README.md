@@ -27,3 +27,4 @@
 - Redux
 - TypeScript
 - SSR
+- React Router
