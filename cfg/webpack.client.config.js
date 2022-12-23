@@ -6,15 +6,17 @@ const IS_DEV = process.env.NODE_ENV === 'development'
 IS_DEV ? console.log(`Сборка осуществляется в режиме разработки`) : console.log(`Сборка осуществляется в режиме релиза`)
 const GLOBAL_CSS_REGEXP = /\.global.css$/
 const DEV_PLUGINGS = [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()]
-const COMMON_PLUGINGS = [new DefinePlugin({'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`})]
-const PORT = process.env.PORT || 3000
-const SITE = process.env.SITE || 'localhost'
+const COMMON_PLUGINGS = [new DefinePlugin({
+	'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`,
+	'process.env.SITE': `'${process.env.SITE}'`,
+	'process.env.PORT': `'${process.env.PORT}'`
+})]
 
 function getEntry() {
 	if (!IS_DEV) [path.resolve(__dirname, '../src/client/index.jsx')]
 	return [
 		path.resolve(__dirname, '../src/client/index.jsx'),
-		`webpack-hot-middleware/client?path=http://${SITE}:${PORT}/static/__webpack_hmr`
+		`webpack-hot-middleware/client?path=http://${process.env.SITE}:${process.env.PORT}/static/__webpack_hmr`
 	]
 }
 
