@@ -7,13 +7,20 @@ IS_DEV ? console.log(`Сборка осуществляется в режиме 
 const GLOBAL_CSS_REGEXP = /\.global.css$/
 const DEV_PLUGINGS = [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()]
 const COMMON_PLUGINGS = [new DefinePlugin({'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`})]
+const PORT = process.env.PORT || 3000
+const SITE = process.env.SITE || 'localhost'
+
+function getEntry() {
+	if (!IS_DEV) [path.resolve(__dirname, '../src/client/index.jsx')]
+	return [
+		path.resolve(__dirname, '../src/client/index.jsx'),
+		`webpack-hot-middleware/client?path=http://${SITE}:${PORT}/static/__webpack_hmr`
+	]
+}
 
 module.exports = {
 	mode: process.env.NODE_ENV,
-	entry: [
-		path.resolve(__dirname, '../src/client/index.jsx'),
-		'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr'
-	],
+	entry: getEntry(),
 	output: {
 		path: path.resolve(__dirname, '../app/client'),
         filename: 'client.js',

@@ -1,15 +1,24 @@
 import axios from 'axios'
+import compression from 'compression'
 import express from 'express'
 import ReactDOM from 'react-dom/server'
 import { App } from '../App'
 import { mainTemplate } from './mainTemplate'
 
+const PORT = process.env.PORT || 3000
+const SITE = process.env.SITE || 'localhost'
+const IS_DEV = process.env.NODE_ENV === 'development'
+
 const app = express()
+
+if (IS_DEV) {
+    app.use(compression())
+}
 
 app.get('/auth', (req, res) => {
     axios.post(
         'https://www.reddit.com/api/v1/access_token',
-        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://${SITE}:${PORT}/auth`,
         {
             auth: {username: process.env.CLIENT_ID, password: process.env.CLIENT_SECRET},
             headers: {'Content-type': 'application/x-www-form-urlencoded'}
@@ -25,4 +34,4 @@ app.use('/static', express.static('./app/client'))
 
 app.get('*', (req, res) => {res.send(mainTemplate(ReactDOM.renderToString(App())))})
 
-app.listen(3000, () => console.log('Сервер запустился на http://localhost:3000'))
+app.listen(3000, () => console.log(`Сервер запустился на http://${SITE}:${PORT}`))

@@ -4,6 +4,9 @@ import { Route, Routes } from 'react-router';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../store/store';
 
+const PORT = process.env.PORT || 3000
+const SITE = process.env.SITE
+
 export function AppControls() {
     const loading = useSelector<RootState, boolean>((state) => state.items.loading)
     const error = useSelector<RootState, string>((state) => state.items.error)
@@ -17,7 +20,7 @@ export function AppControls() {
                             <>
                                 <h1>Чтобы увидеть карточки, авторизуйтесь</h1> 
                                 <a className='btn btn-lg btn-outline-info'
-                                    href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read identity submit`}>
+                                    href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=random_string&redirect_uri=http://${SITE}:${PORT}/auth&duration=permanent&scope=read identity submit`}>
                                     Авторизация
                                 </a>
                             </>
