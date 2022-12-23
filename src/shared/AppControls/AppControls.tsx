@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { RootState } from '../../store/store';
 
 const PORT = process.env.PORT || 3000
-const SITE = process.env.SITE
+const SITE = process.env.SITE || 'localhost'
 
 export function AppControls() {
     const loading = useSelector<RootState, boolean>((state) => state.items.loading)
