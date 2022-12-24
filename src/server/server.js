@@ -5,13 +5,12 @@ import ReactDOM from 'react-dom/server'
 import { App } from '../App'
 import { mainTemplate } from './mainTemplate'
 
-const IS_DEV = process.env.NODE_ENV === 'development'
 const SITE = process.env.SITE === 'undefined' ? 'localhost' : process.env.SITE
 const PORT = process.env.PORT === 'undefined' ? 3000 : process.env.PORT
 
 const app = express()
 
-if (IS_DEV) {
+if (process.env.NODE_ENV === 'production') {
     app.use(compression())
 }
 
