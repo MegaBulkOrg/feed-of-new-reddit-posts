@@ -16,11 +16,13 @@ const SITE = process.env.SITE === 'undefined' || process.env.SITE === undefined 
 const PORT = process.env.PORT === 'undefined' || process.env.PORT === undefined ? 3000 : process.env.PORT
 
 function getEntry() {
-	if (!IS_DEV) [path.resolve(__dirname, '../src/client/index.jsx')]
-	return [
-		path.resolve(__dirname, '../src/client/index.jsx'),
-		`webpack-hot-middleware/client?path=http://${SITE}:${PORT}/static/__webpack_hmr`
-	]
+	// if (!IS_DEV) [path.resolve(__dirname, '../src/client/index.jsx')]
+	// return [
+	// 	path.resolve(__dirname, '../src/client/index.jsx'),
+	// 	`webpack-hot-middleware/client?path=http://${SITE}:${PORT}/static/__webpack_hmr`
+	// ]
+	console.log('совсем выкинул из getEntry HMR');
+	return [path.resolve(__dirname, '../src/client/index.jsx')]
 }
 
 module.exports = {
