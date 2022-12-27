@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../store/store';
 
-const SITE = process.env.SITE === 'undefined' ? 'localhost' : process.env.SITE
-const PORT = process.env.PORT === 'undefined' ? 3000 : process.env.PORT
+const SITE = process.env.SITE === 'undefined' || process.env.SITE === undefined ? 'localhost' : process.env.SITE
+const PORT = process.env.PORT === 'undefined' || process.env.PORT === undefined ? 3000 : process.env.PORT
 
 export function AppControls() {
     const loading = useSelector<RootState, boolean>((state) => state.items.loading)

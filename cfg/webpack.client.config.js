@@ -12,11 +12,14 @@ const COMMON_PLUGINGS = [new DefinePlugin({
 	'process.env.PORT': `'${process.env.PORT}'`
 })]
 
+const SITE = process.env.SITE === 'undefined' || process.env.SITE === undefined ? 'localhost' : process.env.SITE
+const PORT = process.env.PORT === 'undefined' || process.env.PORT === undefined ? 3000 : process.env.PORT
+
 function getEntry() {
 	if (!IS_DEV) [path.resolve(__dirname, '../src/client/index.jsx')]
 	return [
 		path.resolve(__dirname, '../src/client/index.jsx'),
-		`webpack-hot-middleware/client?path=http://${process.env.SITE}:${process.env.PORT}/static/__webpack_hmr`
+		`webpack-hot-middleware/client?path=http://${SITE}:${PORT}/static/__webpack_hmr`
 	]
 }
 
