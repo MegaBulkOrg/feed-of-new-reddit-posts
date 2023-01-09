@@ -1,6 +1,6 @@
 export const mainTemplate = (content, token) => `
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="ru">
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,4 +18,4 @@ export const mainTemplate = (content, token) => `
             <div id="react_root">${content}</div>
         </body>
     </html>
-`
+`;
