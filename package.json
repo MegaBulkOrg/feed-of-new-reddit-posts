@@ -8,8 +8,8 @@
   "main": "index.js",
   "scripts": {
     "local-dev": "cross-env NODE_ENV=development CLIENT_ID=gndFXFIa_C_tZUZ4nheIYA CLIENT_SECRET=I1DfQd4x3MdM7LHovJQ0XpMQLDREAg node ./bin/dev.js",
-    "dev": "cross-env NODE_ENV=development SITE=89.253.220.134 PORT=5000 CLIENT_ID=hQi42aSBV-UuUs2Bz-6scA CLIENT_SECRET=HxXeoIsrwjY_UUU0B4A-RepFx6ebRw node ./bin/dev.js",
-    "prod": "cross-env NODE_ENV=production SITE=89.253.220.134 PORT=5000 CLIENT_ID=hQi42aSBV-UuUs2Bz-6scA CLIENT_SECRET=HxXeoIsrwjY_UUU0B4A-RepFx6ebRw node ./bin/dev.js",
+    "alfa-dev": "cross-env NODE_ENV=development SITE=89.253.220.134 PORT=5000 CLIENT_ID=hQi42aSBV-UuUs2Bz-6scA CLIENT_SECRET=HxXeoIsrwjY_UUU0B4A-RepFx6ebRw node ./bin/dev.js",
+    "alfa-prod": "cross-env NODE_ENV=production SITE=89.253.220.134 PORT=5000 CLIENT_ID=hQi42aSBV-UuUs2Bz-6scA CLIENT_SECRET=HxXeoIsrwjY_UUU0B4A-RepFx6ebRw node ./bin/dev.js",
     "test": "jest"
   },
   "author": "BaoLuo <ceo@megabulk.ru>",
