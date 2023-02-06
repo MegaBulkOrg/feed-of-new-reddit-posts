@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { hot } from "react-hot-loader/root";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
