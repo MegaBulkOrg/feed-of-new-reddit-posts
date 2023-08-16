@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { hot } from "react-hot-loader/root";
+import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { StaticRouter } from "react-router-dom/server";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import "./global.css";
-import { AppControls } from "./shared/AppControls";
+import { AppControls } from "./shared/AppControls/AppControls";
+import { Content } from "./shared/Content/Content";
 import { CardsList } from "./shared/cards/CardsList";
-import { Content } from "./shared/Content";
 import { rootReducer } from "./store/store";
 
 const store = createStore(
@@ -24,27 +24,35 @@ function AppContent() {
   // Route для "*" (ошибка 404) прописывать не надо: на этой "странице" должен отображаться лишь компонент AppControls а он и так есть
   // однако из-за того что для "sign-in" и "*" в корневом компоненте не прописан роут, в консоли будут возникать предупреждения "No routes matched location" - поэтому введен последний роут который их убирает
   return (
-    <BrowserRouter>
-      <Content>
-        <AppControls />
-        <Routes>
+    <Content>
+      <AppControls />
+      <Routes>
           <Route path="/" element={<Navigate to="/posts" />} />
           <Route path="/auth" element={<Navigate to="/posts" />} />
           <Route path="/posts" element={<CardsList />} />
           <Route path="/favorites" element={<CardsList />} />
           <Route path="*" element="" />
-        </Routes>
-      </Content>
-    </BrowserRouter>
+      </Routes>
+    </Content>
   );
 }
 
-function AppComponent() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  return <Provider store={store}>{mounted && <AppContent />}</Provider>;
-}
+export const ClientApp = () => {  
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </Provider>
+  );
+};
 
-export const App = hot(() => <AppComponent />);
+export const ServerApp = (url: string) => {  
+  return (
+    <Provider store={store}>
+      <StaticRouter location={url}>
+        <AppContent />
+      </StaticRouter>
+    </Provider>
+  );
+};
