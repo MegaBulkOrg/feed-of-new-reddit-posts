@@ -1,3 +1,4 @@
+import axios from 'axios';
 import compression from "compression";
 import express from "express";
 import helmet from "helmet";
@@ -26,6 +27,21 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use("/static", express.static("./app/client"));
+
+app.get("/auth", (req, res) => {
+    axios.post(
+        'https://www.reddit.com/api/v1/access_token',
+        `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://${SITE}:${PORT}/auth`,
+        {
+            auth: {username: process.env.CLIENT_ID, password: process.env.CLIENT_SECRET},
+            headers: {'Content-type': 'application/x-www-form-urlencoded'}
+        }
+    )
+    .then(({data}) => {
+        res.send(mainTemplate(ReactDOMServer.renderToString(ServerApp(req.url)), data['access_token']))
+    })
+    .catch((msg) => console.log('[server.js]: что-то пошло не так при получении токена'))
+})
 
 app.get("*", (req, res) => {
   res.send(mainTemplate(ReactDOMServer.renderToString(ServerApp(req.url))));

@@ -21,11 +21,11 @@ export function CardsList() {
   const location = useLocation()
   // диспачить нужно только 1 раз а не то будет много редиректов (в консоли браузера об этом будет куча ошибок)
   useEffect(() => {dispatch(dataRequestAsync())},[])
-  const token = localStorage.getItem('token')
   const navigation = useNavigate()
   // перенаправление на "страницу" авторизации помещено в этом компоненте потому что useNavigate может быть использован только внутри компонента Route
   // а в useEffect он помещен поскольку может быть вызван только в useEffect  
   useEffect(() => {
+    const token = localStorage.getItem('token')
     if (!token || token === '' || token === 'undefined') navigation('/sign-in');
   }, []);
 
