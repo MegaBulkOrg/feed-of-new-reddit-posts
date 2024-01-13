@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons/Icon';
+import { EIcon } from '../../icons/enums';
 import styles from './card.css';
 import nophoto from './noPhoto.jpg';
-
-enum EIcon {
-  likeFalse = 'likeFalse',
-  likeTrue = 'likeTrue',
-  remove = 'remove'
-}
 
 export interface ICardProps {
   id: string
@@ -24,7 +19,7 @@ export function Card({title, url, id, remove, addToFavorites}: ICardProps) {
   useEffect(() => {addToFavorites(id, like)}, [like])
 
   return (
-    <div className='card'>           
+    <div className='card'>
       <div className={styles.cardImgContainer}>
         {/* 
           к сожалению использовать метод endsWith с регулярными выражениями нельзя - возникнет TypeError
